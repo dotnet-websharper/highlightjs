@@ -1,0 +1,41 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81D4E1D1-E78E-4DCB-9365-9A96241C8E06}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build-zafir.cmd = build-zafir.cmd
+		build-zafir.fsx = build-zafir.fsx
+		build.cmd = build.cmd
+		build.fsx = build.fsx
+		build.sh = build.sh
+		ivy-zafir.xml = ivy-zafir.xml
+		ivy.xml = ivy.xml
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebSharper.Highlightjs", "WebSharper.Highlightjs\WebSharper.Highlightjs.fsproj", "{7935C8AD-4B6A-4237-B039-3A88BD0EEBCA}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebSharper.Highlightjs.Sample", "WebSharper.Highlightjs.Sample\WebSharper.Highlightjs.Sample.fsproj", "{40A2E5A4-2F12-40F0-9CFF-BCD814CEEDF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7935C8AD-4B6A-4237-B039-3A88BD0EEBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7935C8AD-4B6A-4237-B039-3A88BD0EEBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7935C8AD-4B6A-4237-B039-3A88BD0EEBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7935C8AD-4B6A-4237-B039-3A88BD0EEBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40A2E5A4-2F12-40F0-9CFF-BCD814CEEDF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40A2E5A4-2F12-40F0-9CFF-BCD814CEEDF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40A2E5A4-2F12-40F0-9CFF-BCD814CEEDF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40A2E5A4-2F12-40F0-9CFF-BCD814CEEDF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

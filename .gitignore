@@ -1,0 +1,9 @@
+/.vs/
+/*.suo
+/*.Tests/Scripts/WebSharper/
+/*.Tests/Content/WebSharper/
+/build/
+/*/bin/
+/*/obj/
+/packages/
+/tools/packages/
