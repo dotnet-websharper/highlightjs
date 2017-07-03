@@ -338,7 +338,12 @@ if (!console) {
  Client=Sample.Client=Sample.Client||{};
  Client.Main=function()
  {
-  return 10;
+  var hljsConfig;
+  hljsConfig={};
+  hljsConfig.tabReplace="    ";
+  hljsConfig.useBR=false;
+  Global.hljs.configure(hljsConfig);
+  Global.hljs.initHighlightingOnLoad();
  };
  Client.Main();
 }());

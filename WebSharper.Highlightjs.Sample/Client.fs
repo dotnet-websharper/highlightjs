@@ -14,9 +14,8 @@ module Client =
     [<SPAEntryPoint>]
     let Main () =
         let hljsConfig = new WebSharper.Highlightjs.Options()
-        hljsConfig.tabReplace <- "    "
-        hljsConfig.useBR <- true
+        hljsConfig.TabReplace <- "    "
+        hljsConfig.UseBR <- false
 
-        let hljs = new WebSharper.Highlightjs.Highlightjs()
-        hljs.initHighlight()
-        10
+        Hljs.Configure(hljsConfig)
+        WebSharper.Highlightjs.Hljs.InitHighlightingOnLoad()

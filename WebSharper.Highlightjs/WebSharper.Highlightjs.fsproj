@@ -66,42 +66,52 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="WebSharper.Collections">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Collections.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Collections" />
     <Reference Include="WebSharper.Control">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Control.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Control.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Control" />
     <Reference Include="WebSharper.Core">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Core.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Core.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Core" />
     <Reference Include="WebSharper.Core.JavaScript">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Core.JavaScript.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Core.JavaScript.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Core.JavaScript" />
     <Reference Include="WebSharper.InterfaceGenerator">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.InterfaceGenerator.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.InterfaceGenerator.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.InterfaceGenerator" />
     <Reference Include="WebSharper.JavaScript">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.JavaScript.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.JavaScript.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.JavaScript" />
     <Reference Include="WebSharper.JQuery">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.JQuery.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.JQuery.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.JQuery" />
     <Reference Include="WebSharper.Main">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Main.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Main.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Main" />
     <Reference Include="WebSharper.Sitelets">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Sitelets.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Sitelets.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Sitelets" />
     <Reference Include="WebSharper.Web">
-      <HintPath>..\packages\Zafir.4.0.169.70-beta7\lib\net40\WebSharper.Web.dll</HintPath>
+      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Web.dll</HintPath>
     </Reference>
+    <Reference Include="WebSharper.Web" />
   </ItemGroup>
-  <Import Project="..\packages\Zafir.FSharp.4.0.169.70-beta7\build\Zafir.FSharp.targets" Condition="Exists('..\packages\Zafir.FSharp.4.0.169.70-beta7\build\Zafir.FSharp.targets')" />
+  <Import Project="..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets" Condition="Exists('..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Zafir.FSharp.4.0.169.70-beta7\build\Zafir.FSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zafir.FSharp.4.0.169.70-beta7\build\Zafir.FSharp.targets'))" />
+    <Error Condition="!Exists('..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
