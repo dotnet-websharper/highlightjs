@@ -31,10 +31,10 @@ bt.Solution [
     bt.NuGet.CreatePackage()
         .Configure(fun c ->
             { c with
-                Title = Some "WebSharper.Highlightjs"
+                Title = Some "WebSharper.HighlightJS"
                 LicenseUrl = Some "http://websharper.com/licensing"
                 ProjectUrl = Some "https://github.com/intellifactory/https://github.com/intellifactory/websharper.highlightjs"
-                Description = "WebSharper.Highlightjs"
+                Description = "WebSharper.HighlightJS"
                 RequiresLicenseAcceptance = true })
         .Add(main)
 ]

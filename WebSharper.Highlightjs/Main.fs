@@ -92,14 +92,14 @@ module Definition =
 
     let Assembly =
         Assembly [
-            Namespace "WebSharper.Highlightjs.Resources" [
+            Namespace "WebSharper.HighlightJS.Resources" [
                 Resource "Js" "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"
                 |> AssemblyWide
                 Resource "Css" "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
                 |> AssemblyWide
                 Resource "Fsharp" "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/fsharp.min.js"
             ]
-            Namespace "WebSharper.Highlightjs" [
+            Namespace "WebSharper.HighlightJS" [
                 Options
                 Result
                 ResultAuto

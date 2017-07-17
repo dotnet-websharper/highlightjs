@@ -2,7 +2,7 @@
 open IntelliFactory.Build
 
 let bt =
-    BuildTool().PackageId("Zafir.Highlightjs")
+    BuildTool().PackageId("Zafir.HighlightJS")
         .VersionFrom("Zafir")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun f -> f.Net40)
@@ -31,10 +31,10 @@ bt.Solution [
     bt.NuGet.CreatePackage()
         .Configure(fun c ->
             { c with
-                Title = Some "WebSharper.Highlightjs"
+                Title = Some "WebSharper.HighlightJS"
                 LicenseUrl = Some "http://websharper.com/licensing"
                 ProjectUrl = Some "https://github.com/intellifactory/https://github.com/intellifactory/websharper.highlightjs"
-                Description = "WebSharper.Highlightjs"
+                Description = "WebSharper.HighlightJS"
                 RequiresLicenseAcceptance = true })
         .Add(main)
 ]
