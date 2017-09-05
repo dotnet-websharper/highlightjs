@@ -2,26 +2,26 @@
 open IntelliFactory.Build
 
 let bt =
-    BuildTool().PackageId("Zafir.HighlightJS")
-        .VersionFrom("Zafir")
+    BuildTool().PackageId("WebSharper.HighlightJS")
+        .VersionFrom("WebSharper")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun f -> f.Net40)
 
 let main =
-    bt.Zafir.Extension("WebSharper.Highlightjs")
+    bt.WebSharper4.Extension("WebSharper.Highlightjs")
         .SourcesFromProject()
         .Embed([])
         .References(fun r -> [])
 
 let tests =
-    bt.Zafir.SiteletWebsite("WebSharper.Highlightjs.Tests")
+    bt.WebSharper4.SiteletWebsite("WebSharper.Highlightjs.Tests")
         .SourcesFromProject()
         .Embed([])
         .References(fun r ->
             [
                 r.Project(main)
-                r.NuGet("Zafir.Testing").Latest(true).Reference()
-                r.NuGet("Zafir.UI.Next").Latest(true).Reference()
+                r.NuGet("WebSharper.Testing").Latest(true).Reference()
+                r.NuGet("WebSharper.UI.Next").Latest(true).Reference()
             ])
 
 bt.Solution [
