@@ -1,123 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>7935c8ad-4b6a-4237-b039-3a88bd0eebca</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>WebSharper.Highlightjs</RootNamespace>
-    <AssemblyName>WebSharper.Highlightjs</AssemblyName>
-    <WebSharperProject>InterfaceGenerator</WebSharperProject>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Name>WebSharper.Highlightjs</Name>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <WebSharperProject>Extension</WebSharperProject>
+    <WebSharperSourceMap>false</WebSharperSourceMap>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <Tailcalls>false</Tailcalls>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <Tailcalls>true</Tailcalls>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '11.0'">
-      <PropertyGroup Condition=" '$(FSharpTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets') ">
-        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup Condition=" '$(FSharpTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets') ">
-        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
-  <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Main.fs" />
-    <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="WebSharper.Collections">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Collections" />
-    <Reference Include="WebSharper.Control">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Control.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Control" />
-    <Reference Include="WebSharper.Core">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Core" />
-    <Reference Include="WebSharper.Core.JavaScript">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Core.JavaScript.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Core.JavaScript" />
-    <Reference Include="WebSharper.InterfaceGenerator">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.InterfaceGenerator.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.InterfaceGenerator" />
-    <Reference Include="WebSharper.JavaScript">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.JavaScript.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.JavaScript" />
-    <Reference Include="WebSharper.JQuery">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.JQuery.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.JQuery" />
-    <Reference Include="WebSharper.Main">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Main.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Main" />
-    <Reference Include="WebSharper.Sitelets">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Sitelets.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Sitelets" />
-    <Reference Include="WebSharper.Web">
-      <HintPath>..\packages\Zafir.4.0.170.71-beta7\lib\net40\WebSharper.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSharper.Web" />
-  </ItemGroup>
-  <Import Project="..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets" Condition="Exists('..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zafir.FSharp.4.0.170.71-beta7\build\Zafir.FSharp.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

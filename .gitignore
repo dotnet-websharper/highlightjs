@@ -8,3 +8,10 @@
 /packages/
 /tools/packages/
 /*.Sample/Content/
+
+bin/
+obj/
+/.fake/
+/paket-files/
+/.vscode/
+nuget/*.paket.template
