@@ -19,11 +19,14 @@
 // $end{copyright}
 namespace WebSharper.Highlightjs.Extension
 
+open System
+open System.Text.RegularExpressions
 open WebSharper
 open WebSharper.JavaScript
 open WebSharper.InterfaceGenerator
 
 module Definition =
+
     let Hljs = Class "hljs"
 
 
@@ -107,17 +110,95 @@ module Definition =
     let RegisterLanguage = "registerLanguage" => (T<string>*LanguageDef) ^-> T<unit>
     let ListLanguages = "listLanguages" => T<unit> ^-> T<list<string>>
     let GetLanguage = "getLanguage" => T<string> ^-> T<obj> *)
-    
+
+    let baseUrl = sprintf "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2"
+
+    let MainJs =    
+        Resource "Js" (sprintf "%s/highlight.min.js" baseUrl)
+        |> AssemblyWide
+
+    /// Transform eg "foo-bar" into "FooBar"
+    let Capitalize s =
+        Regex("(^|[-_.]).").Replace(s, fun (m: Match) ->
+            Char.ToUpperInvariant(m.Value.[m.Value.Length - 1])
+            |> string)
+
+    let Languages =
+        [
+            "1c"
+            "abnf"; "accesslog"; "actionscript"; "ada"; "angelscript"; "apache"; "applescript"; "arcade"; "arduino"; "armasm"; "asciidoc"; "aspectj"; "autohotkey"; "autoit"; "avrasm"; "awk"; "axapta"
+            "bash"; "basic"; "bnf"; "brainfuck"
+            "cal"; "capnproto"; "ceylon"; "clean"; "clojure-repl"; "clojure"; "cmake"; "coffeescript"; "coq"; "cos"; "cpp"; "crmsh"; "crystal"; "cs"; "csp"; "css"
+            "d"; "dart"; "delphi"; "diff"; "django"; "dns"; "dockerfile"; "dos"; "dsconfig"; "dts"; "dust"
+            "ebnf"; "elixir"; "elm"; "erb"; "erlang-repl"; "erlang"; "excel"
+            "fix"; "flix"; "fortran"; "fsharp"
+            "gams"; "gauss"; "gcode"; "gherkin"; "glsl"; "gml"; "go"; "golo"; "gradle"; "groovy"
+            "haml"; "handlebars"; "haskell"; "haxe"; "hsp"; "htmlbars"; "http"; "hy"
+            "inform7"; "ini"; "irpf90"; "isbl"
+            "java"; "javascript"; "jboss-cli"; "json"; "julia-repl"; "julia"
+            "kotlin"
+            "lasso"; "ldif"; "leaf"; "less"; "lisp"; "livecodeserver"; "livescript"; "llvm"; "lsl"; "lua"
+            "makefile"; "markdown"; "mathematica"; "matlab"; "maxima"; "mel"; "mercury"; "mipsasm"; "mizar"; "mojolicious"; "monkey"; "moonscript"
+            "n1ql"; "nginx"; "nimrod"; "nix"; "nsis"
+            "objectivec"; "ocaml"; "openscad"; "oxygene"
+            "parser3"; "perl"; "pf"; "pgsql"; "php"; "plaintext"; "pony"; "powershell"; "processing"; "profile"; "prolog"; "properties"; "protobuf"; "puppet"; "purebasic"; "python"
+            "q"; "qml"
+            "r"; "reasonml"; "rib"; "roboconf"; "routeros"; "rsl"; "ruby"; "ruleslanguage"; "rust"
+            "sas"; "scala"; "scheme"; "scilab"; "scss"; "shell"; "smali"; "smalltalk"; "sml"; "sqf"; "sql"; "stan"; "stata"; "step21"; "stylus"; "subunit"; "swift"
+            "taggerscript"; "tap"; "tcl"; "tex"; "thrift"; "tp"; "twig"; "typescript"
+            "vala"; "vbnet"; "vbscript-html"; "vbscript"; "verilog"; "vhdl"; "vim"
+            "x86asm"; "xl"; "xml"; "xquery"
+            "yaml"
+            "zephir"
+        ]
+        |> List.map (fun name ->
+            let ident = Capitalize name
+            Resource ident (sprintf "%s/languages/%s.min.js" baseUrl name)
+            |> Requires [MainJs]
+            :> CodeModel.NamespaceEntity
+        )
+
+    let Styles =
+        [
+            "a11y-dark"; "a11y-light"; "agate"; "an-old-hope"; "androidstudio"; "arduino-light"; "arta"; "ascetic"
+            "atelier-cave-dark"; "atelier-cave-light"; "atelier-dune-dark"; "atelier-dune-light"; "atelier-estuary-dark"; "atelier-estuary-light"
+            "atelier-forest-dark"; "atelier-forest-light"; "atelier-heath-dark"; "atelier-heath-light"; "atelier-lakeside-dark"; "atelier-lakeside-light"
+            "atelier-plateau-dark"; "atelier-plateau-light"; "atelier-savanna-dark"; "atelier-savanna-light"; "atelier-seaside-dark"; "atelier-seaside-light"; "atelier-sulphurpool-dark"; "atelier-sulphurpool-light"
+            "atom-one-dark-reasonable"; "atom-one-dark"; "atom-one-light"
+            "brown-paper"
+            "codepen-embed"; "color-brewer"
+            "darcula"; "dark"; "darkula"; "default"; "docco"; "dracula"
+            "far"; "foundation"
+            "github-gist"; "github"; "gml"; "googlecode"; "grayscale"; "gruvbox-dark"; "gruvbox-light"
+            "hopscotch"; "hybrid"
+            "idea"; "ir-black"; "isbl-editor-dark"; "isbl-editor-light"
+            "kimbie.dark"; "kimbie.light"
+            "lightfair"
+            "magula"; "mono-blue"; "monokai-sublime"; "monokai"
+            "nord"
+            "obsidian"; "ocean"
+            "paraiso-dark"; "paraiso-light"; "pojoaque"; "purebasic"
+            "qtcreator_dark"; "qtcreator_light"
+            "railscasts"; "rainbow"; "routeros"
+            "school-book"; "shades-of-purple"; "solarized-dark"; "solarized-light"; "sunburst"
+            "tomorrow-night-blue"; "tomorrow-night-bright"; "tomorrow-night-eighties"; "tomorrow-night"; "tomorrow"
+            "vs"; "vs2015"
+            "xcode"; "xt256"
+            "zenburn"
+        ]
+        |> List.map (fun name ->
+            let ident = Capitalize name
+            Resource ident (sprintf "%s/styles/%s.min.css" baseUrl name)
+            :> CodeModel.NamespaceEntity
+        )
 
     let Assembly =
         Assembly [
             Namespace "WebSharper.HighlightJS.Resources" [
-                Resource "Js" "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"
-                |> AssemblyWide
-                Resource "Css" "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
-                |> AssemblyWide
-                Resource "Fsharp" "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/fsharp.min.js"
+                MainJs
             ]
+            Namespace "WebSharper.HighlightJS.Resources.Languages" Languages
+            Namespace "WebSharper.HighlightJS.Resources.Styles" Styles
             Namespace "WebSharper.HighlightJS" [
                 Options
                 Result
