@@ -16,4 +16,4 @@ files
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.dll ==> lib/netstandard2.0
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.xml ==> lib/netstandard2.0
 dependencies
-        WebSharper ~> LOCKEDVERSION/3
+        WebSharper ~> LOCKEDVERSION:[3]
