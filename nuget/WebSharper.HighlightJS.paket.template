@@ -1,18 +1,17 @@
 type file
 id WebSharper.HighlightJS
-authors
-    IntelliFactory
-owners
-    IntelliFactory
-licenseUrl http://websharper.com/licensing
-projectUrl https://github.com/intellifactory/https://github.com/intellifactory/websharper.highlightjs
+authors IntelliFactory
+owners IntelliFactory
+projectUrl https://websharper.com/
+repositoryType git
+repositoryUrl https://github.com/dotnet-websharper/highlightjs/
+licenseUrl https://github.com/dotnet-websharper/highlightjs/blob/master/LICENSE.md
+iconUrl https://github.com/dotnet-websharper/core/raw/websharper50/tools/WebSharper.png
 description
-    WebSharper.HighlightJS
+    WebSharper extension HighlightJS
 tags
-    Web JavaScript F# C#
+    WebSharper Web JavaScript F# C# HighlightJS
 files
-    ../WebSharper.Highlightjs/bin/Release/net461/WebSharper.Highlightjs.dll ==> lib/net461
-    ../WebSharper.Highlightjs/bin/Release/net461/WebSharper.Highlightjs.xml ==> lib/net461
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.dll ==> lib/netstandard2.0
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.xml ==> lib/netstandard2.0
 dependencies
