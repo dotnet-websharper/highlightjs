@@ -412,7 +412,7 @@ NUGET
       System.Security.AccessControl (>= 4.7)
       System.Windows.Extensions (>= 4.7) - restriction: || (== net5.0) (&& (== netcoreapp2.1) (>= netcoreapp3.0)) (== netcoreapp3.1) (&& (== netstandard2.0) (>= netcoreapp3.0))
     System.Security.Principal.Windows (4.7)
-      Microsoft.NETCore.Platforms (>= 3.1) - restriction: || (&& (== net5.0) (< netcoreapp2.1)) (&& (== net5.0) (< netcoreapp3.0)) (== netcoreapp2.1) (&& (== netcoreapp3.1) (< netcoreapp2.1)) (&& (== netcoreapp3.1) (< netcoreapp3.0)) (&& (== netstandard2.0) (>= netcoreapp2.0)) (&& (== netstandard2.0) (>= netcoreapp2.1))
+      Microsoft.NETCore.Platforms (>= 3.1) - restriction: || (&& (== net5.0) (== netstandard2.0)) (&& (== net5.0) (< netcoreapp2.1)) (&& (== net5.0) (< netcoreapp3.0)) (== netcoreapp2.1) (&& (== netcoreapp3.1) (== netstandard2.0)) (&& (== netcoreapp3.1) (< netcoreapp2.1)) (&& (== netcoreapp3.1) (< netcoreapp3.0)) (&& (== netstandard2.0) (>= netcoreapp2.0)) (&& (== netstandard2.0) (>= netcoreapp2.1))
     System.Text.Encoding (4.3)
       Microsoft.NETCore.Platforms (>= 1.1)
       Microsoft.NETCore.Targets (>= 1.1)
@@ -513,4 +513,4 @@ GROUP wsbuild
 
 GIT
   remote: https://github.com/dotnet-websharper/build-script
-     (3f1320b6f18c663fd395803eb79409ad102231ac)
+     (f028af07cf019553ae078fef9afc3706aa16c98c)
