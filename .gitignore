@@ -15,3 +15,4 @@ obj/
 /paket-files/
 /.vscode/
 *.user
+dist/*
