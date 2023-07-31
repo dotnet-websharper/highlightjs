@@ -27,7 +27,9 @@ open WebSharper.InterfaceGenerator
 
 module Definition =
 
-    let Hljs = Class "hljs"
+    let Hljs =
+        Class "hljs"
+        |> ImportDefault "highlight.js/lib/core"
 
 
     let Options =
@@ -84,17 +86,18 @@ module Definition =
             ]
         }
 
-    let LanguageDef = Hljs ^-> T<obj>
+    let Language =
+        Class "Language"
     
     Hljs
-        |+> Static[
+        |+> Static [
             "configure" => Options ^-> T<unit>
             "highlight" => T<string>?code ^-> HighlightOptions ^-> Result
             "highlightAll" => T<unit> ^-> T<unit>
             "highlightAuto" => T<string>?code ^-> !?T<string> ^-> ResultAuto
             "highlightElement" => T<JavaScript.Dom.Node> ^-> T<unit>
             "listLanguages" => T<unit> ^-> !|T<string>
-            "registerLanguage" => (T<string> * LanguageDef) ^-> T<unit>
+            "registerLanguage" => (T<string> * Language) ^-> T<unit>
             "unregisterLanguage" => T<string> ^-> T<unit>
             "getLanguage" => T<string> ^-> T<obj>
             "registerAliases" => T<string> + !|T<string> ^-> T<string> ^-> T<unit>
@@ -113,19 +116,13 @@ module Definition =
                 |> ObsoleteWithMessage "Please use HighlightAll instead"
         ] |> ignore
 
-    let baseUrl = sprintf "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0"
-
-    let MainJs =    
-        Resource "Js" (sprintf "%s/highlight.min.js" baseUrl)
-        |> AssemblyWide
-
     /// Transform eg "foo-bar" into "FooBar"
     let Capitalize (s: string) =
         Regex("(^|[-.]).").Replace(s.Replace("/", "_"), fun (m: Match) ->
             Char.ToUpperInvariant(m.Value.[m.Value.Length - 1])
             |> string)
 
-    let Languages =
+    let _ =
         [
             "1c"
             "abnf"
@@ -319,14 +316,18 @@ module Definition =
             "yaml"
             "zephir"
         ]
-        |> List.map (fun name ->
-            let ident = Capitalize name
-            Resource ident (sprintf "%s/languages/%s.min.js" baseUrl name)
-            |> Requires [MainJs]
-            :> CodeModel.NamespaceEntity
+        |> List.iter (fun name ->
+            Language
+            |+> Static [
+                name =? TSelf
+                |> ImportDefault (sprintf "highlight.js/lib/languages/%s" name)
+            ] |> ignore
         )
 
     let Styles =
+        Class "Styles"
+
+    let _ =
         [
             "a11y-dark"
             "a11y-light"
@@ -347,6 +348,7 @@ module Definition =
             "devibeans"
             "docco"
             "far"
+            "felipec"
             "foundation"
             "github-dark-dimmed"
             "github-dark"
@@ -377,6 +379,8 @@ module Definition =
             "obsidian"
             "paraiso-dark"
             "paraiso-light"
+            "panda-syntax-light"
+            "panda-syntax-dark"
             "pojoaque"
             "purebasic"
             "qtcreator-dark"
@@ -389,6 +393,8 @@ module Definition =
             "stackoverflow-dark"
             "stackoverflow-light"
             "sunburst"
+            "tokyo-night-dark"
+            "tokyo-night-light"
             "tomorrow-night-blue"
             "tomorrow-night-bright"
             "vs"
@@ -572,25 +578,26 @@ module Definition =
             "base16/xcode-dusk"
             "base16/zenburn"
         ]
-        |> List.map (fun name ->
+        |> List.iter (fun name ->
             let ident = Capitalize name
-            Resource ident (sprintf "%s/styles/%s.min.css" baseUrl name)
-            :> CodeModel.NamespaceEntity
+            Styles
+            |+> Static [
+                ident => T<unit> ^-> T<unit>
+                |> ImportFile (sprintf "highlight.js/styles/%s.css" name)
+            ] |> ignore
+            
         )
 
     let Assembly =
         Assembly [
-            Namespace "WebSharper.HighlightJS.Resources" [
-                MainJs
-            ]
-            Namespace "WebSharper.HighlightJS.Resources.Languages" Languages
-            Namespace "WebSharper.HighlightJS.Resources.Styles" Styles
             Namespace "WebSharper.HighlightJS" [
                 Options
                 Result
                 ResultAuto
                 HighlightOptions
                 Hljs
+                Styles
+                Language
             ]
         ]
 

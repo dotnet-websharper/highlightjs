@@ -21,12 +21,11 @@ namespace WebSharper.Highlightjs.Sample
 
 open WebSharper
 open WebSharper.JavaScript
-open WebSharper.JQuery
 open WebSharper.HighlightJS
 
 [<JavaScript>]
 module Client =
 
-    [<SPAEntryPoint; Require(typeof<Resources.Styles.Default>)>]
+    [<SPAEntryPoint;>] //Require(typeof<Resources.Styles.Default>)
     let Main () =
-        WebSharper.HighlightJS.Hljs.HighlightAll()
+        ()//WebSharper.HighlightJS.Hljs.HighlightAll()
