@@ -32,7 +32,18 @@ nuget Paket.Core prerelease //"
 #endif
 
 open WebSharper.Fake
+open Fake.DotNet
 
 LazyVersionFrom "WebSharper" |> WSTargets.Default
+|> fun args ->
+    { args with
+        Attributes =
+                [
+                    AssemblyInfo.Company "IntelliFactory"
+                    AssemblyInfo.Copyright "(c) IntelliFactory 2023"
+                    AssemblyInfo.Title "https://github.com/dotnet-websharper/highlightjs"
+                    AssemblyInfo.Product "WebSharper HighlightJS 11.8+"
+                ]
+    }
 |> MakeTargets
 |> RunTargets
