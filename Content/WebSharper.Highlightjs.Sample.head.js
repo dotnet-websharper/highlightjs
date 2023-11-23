@@ -1,1 +1,1 @@
-document.write("<link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css\"></link>\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js\" type=\"text/javascript\" charset=\"UTF-8\"></script>")
+document.write("")
