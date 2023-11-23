@@ -16,3 +16,4 @@ obj/
 /.vscode/
 *.user
 dist/*
+websharper.log

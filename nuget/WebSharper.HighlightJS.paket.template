@@ -8,11 +8,12 @@ repositoryUrl https://github.com/dotnet-websharper/highlightjs/
 licenseUrl https://github.com/dotnet-websharper/highlightjs/blob/master/LICENSE.md
 iconUrl https://github.com/dotnet-websharper/core/raw/websharper50/tools/WebSharper.png
 description
-    WebSharper extension HighlightJS version 11.4.0
+    WebSharper extension HighlightJS version 11.8+
 tags
     WebSharper Web JavaScript F# C# HighlightJS
 files
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.dll ==> lib/netstandard2.0
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.xml ==> lib/netstandard2.0
+    ../WebSharper.Highlightjs/WebSharper.Highlightjs.fsproj ==> src/
 dependencies
         WebSharper ~> LOCKEDVERSION:[3]
