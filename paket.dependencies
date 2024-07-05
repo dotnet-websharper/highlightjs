@@ -12,7 +12,7 @@ nuget WebSharper.FSharp prerelease
 
 
 group wsbuild
-    git https://github.com/dotnet-websharper/build-script websharper50
+    git https://github.com/dotnet-websharper/build-script websharper80
 
 group testing
     source https://api.nuget.org/v3/index.json
