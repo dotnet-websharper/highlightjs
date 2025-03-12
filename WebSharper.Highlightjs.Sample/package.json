@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "esbuild": "^0.19.9"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1"
+  }
+}

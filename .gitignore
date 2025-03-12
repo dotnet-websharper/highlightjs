@@ -17,3 +17,5 @@ obj/
 *.user
 dist/*
 websharper.log
+/WebSharper.Highlightjs.Sample/node_modules
+/WebSharper.Highlightjs.Sample/build

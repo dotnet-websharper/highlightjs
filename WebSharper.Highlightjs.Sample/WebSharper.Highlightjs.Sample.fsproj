@@ -1,16 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="esbuild.config.mjs" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Client.fs" />
     <None Include="wsconfig.json" />
+    <Content Include="index.html" />
+    <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../WebSharper.Highlightjs\WebSharper.Highlightjs.fsproj" />
   </ItemGroup>
-  <Import Project="..\paket-files\wsbuild\github.com\dotnet-websharper\build-script\WebSharper.Fake.targets" Condition="Exists('..\paket-files\wsbuild\github.com\dotnet-websharper\build-script\WebSharper.Fake.targets')" />
+  <Target Name="ESBuildBundle" AfterTargets="WebSharperCompile">
+    <Exec Command="npm install" />
+    <Exec Command="node ./esbuild.config.mjs" />
+  </Target>
+  <Target Name="CopyIndex" AfterTargets="Build">
+    <Copy SourceFiles="index.html" DestinationFolder="../dist" />
+  </Target>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
