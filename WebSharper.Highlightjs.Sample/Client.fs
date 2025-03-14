@@ -20,7 +20,6 @@
 namespace WebSharper.Highlightjs.Sample
 
 open WebSharper
-open WebSharper.JavaScript
 open WebSharper.HighlightJS
 
 [<JavaScript>]
@@ -28,4 +27,6 @@ module Client =
 
     [<SPAEntryPoint>] 
     let Main () =
-        WebSharper.HighlightJS.Hljs.HighlightAll()
+        Styles.Default()
+        Hljs.RegisterLanguage("cpp", Language.Cpp)
+        Hljs.HighlightAll()
