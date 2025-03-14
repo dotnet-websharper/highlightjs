@@ -26,6 +26,6 @@ open WebSharper.HighlightJS
 [<JavaScript>]
 module Client =
 
-    [<SPAEntryPoint;>] //Require(typeof<Resources.Styles.Default>)
+    [<SPAEntryPoint>] 
     let Main () =
-        ()//WebSharper.HighlightJS.Hljs.HighlightAll()
+        WebSharper.HighlightJS.Hljs.HighlightAll()
