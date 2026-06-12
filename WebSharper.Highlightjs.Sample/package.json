@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "esbuild": "^0.19.9"
+    "esbuild": "^0.28.1"
   },
   "dependencies": {
     "highlight.js": "^11.11.1"
