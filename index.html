@@ -1,32 +1,44 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>WebSharper.Highlightjs.Sample</title>
+    <title>WebSharper.HighlightJS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="Scripts/WebSharper.Highlightjs.Sample.min.css" />
     <style>
-        /* Don't show the not-yet-loaded templates */
-        [ws-template], [ws-children-template] { display: none; }
+        body {
+            max-width: 760px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            font-family: system-ui, sans-serif;
+        }
+        pre {
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
-    <div id="main">
-        <pre>
-            <code lang="cpp">
-int x = 6;
-for(int i = 0; i < 10; ++i){
-    if(x < 120){
+    <h1>WebSharper.HighlightJS</h1>
+
+    <h2>Highlighted from a string</h2>
+    <pre class="hljs"><code id="highlighted"></code></pre>
+
+    <h2>Highlight all code blocks on the page</h2>
+    <pre><code class="language-cpp">int x = 6;
+for (int i = 0; i < 10; ++i) {
+    if (x < 120) {
         x = x * 3;
     }
-    else{
+    else {
         x = x - 10;
     }
     std::cout << x << std::endl;
 }
-            </code>
-        </pre>
-    </div>
+    </code></pre>
+
     <script type="text/javascript" src="Scripts/WebSharper.Highlightjs.Sample.min.js"></script>
 </body>
 </html>
