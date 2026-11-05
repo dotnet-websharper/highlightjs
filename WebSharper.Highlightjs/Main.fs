@@ -88,19 +88,28 @@ module Definition =
 
     let Language =
         Class "Language"
-    
+
+    let RegisterAliasesOptions =
+        Pattern.Config "RegisterAliasesOptions" {
+            Required = []
+            Optional =
+                [
+                    "languageName", T<string>
+                ]
+        }
+
     Hljs
         |+> Static [
             "configure" => Options ^-> T<unit>
-            "highlight" => T<string>?code ^-> HighlightOptions ^-> Result
+            "highlight" => (T<string>?code * HighlightOptions?options) ^-> Result
             "highlightAll" => T<unit> ^-> T<unit>
-            "highlightAuto" => T<string>?code ^-> !?T<string> ^-> ResultAuto
+            "highlightAuto" => (T<string>?code * (!| T<string>)?languageSubset) ^-> ResultAuto
             "highlightElement" => T<JavaScript.Dom.Node> ^-> T<unit>
             "listLanguages" => T<unit> ^-> !|T<string>
             "registerLanguage" => (T<string> * Language) ^-> T<unit>
             "unregisterLanguage" => T<string> ^-> T<unit>
             "getLanguage" => T<string> ^-> T<obj>
-            "registerAliases" => T<string> + !|T<string> ^-> T<string> ^-> T<unit>
+            "registerAliases" => ((T<string> + !| T<string>)?aliases * RegisterAliasesOptions?options) ^-> T<unit>
             
             "safeMode" => T<unit> ^-> T<unit>
             "debugMode" => T<unit> ^-> T<unit>
@@ -598,6 +607,7 @@ module Definition =
                 Hljs
                 Styles
                 Language
+                RegisterAliasesOptions
             ]
         ]
 

@@ -5,8 +5,8 @@
 // Copyright (c) 2008-2018 IntelliFactory
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you
-// may not use this file except in compliance with the License.  You may
-// obtain a copy of the License at
+// may not use this file except in compliance with the License.  You
+// may obtain a copy of the License at
 //
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
@@ -20,13 +20,30 @@
 namespace WebSharper.Highlightjs.Sample
 
 open WebSharper
+open WebSharper.JavaScript
 open WebSharper.HighlightJS
 
 [<JavaScript>]
 module Client =
 
-    [<SPAEntryPoint>] 
+    let private sample =
+        """let greet name =
+    printfn "Hello, %s!" name
+
+greet "WebSharper"
+"""
+
+    [<SPAEntryPoint>]
     let Main () =
         Styles.Default()
+
+        Hljs.RegisterLanguage("fsharp", Language.Fsharp)
         Hljs.RegisterLanguage("cpp", Language.Cpp)
+
+        // Hljs.Highlight(code, options) highlights a string and returns the
+        // marked-up HTML. (This used to compile to a curried call.)
+        let result = Hljs.Highlight(sample, HighlightOptions("fsharp"))
+        JS.Document.GetElementById("highlighted").InnerHTML <- result.Value
+
+        // Hljs.HighlightAll() highlights every <pre><code> block on the page.
         Hljs.HighlightAll()
