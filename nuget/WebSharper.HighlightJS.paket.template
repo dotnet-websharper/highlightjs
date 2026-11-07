@@ -13,6 +13,7 @@ tags
     WebSharper Web JavaScript F# C# HighlightJS
 files
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.dll ==> lib/netstandard2.0
+    ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.websharper ==> lib/netstandard2.0
     ../WebSharper.Highlightjs/bin/Release/netstandard2.0/WebSharper.Highlightjs.xml ==> lib/netstandard2.0
     ../WebSharper.Highlightjs/WebSharper.Highlightjs.fsproj ==> src/
 dependencies
