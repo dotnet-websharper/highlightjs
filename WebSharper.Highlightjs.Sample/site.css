@@ -1,0 +1,368 @@
+:root {
+    color-scheme: light;
+    --bg: #f6f7fb;
+    --panel: #ffffff;
+    --text: #1c2033;
+    --muted: #5b6178;
+    --border: #e2e5ef;
+    --accent: #b45309;
+    --accent-text: #ffffff;
+    --code-bg: #f0f1f8;
+    --ok: #0f9d58;
+    --error: #c0392b;
+    --shadow: 0 1px 2px rgba(20, 24, 50, .06), 0 8px 24px rgba(20, 24, 50, .06);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f1220;
+    --panel: #171a2b;
+    --text: #e8eaf5;
+    --muted: #a2a8c0;
+    --border: #262b42;
+    --accent: #fbbf24;
+    --accent-text: #0f1220;
+    --code-bg: #20243a;
+    --ok: #4ade80;
+    --error: #f87171;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: var(--accent);
+}
+
+code {
+    background: var(--code-bg);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px 28px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+}
+
+.app-titles h1 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: -.01em;
+}
+
+.app-titles p {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.app-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-source {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+
+.notice {
+    min-height: 0;
+    margin: 0 0 16px;
+    color: var(--error);
+    font-size: 13px;
+}
+
+.notice:empty {
+    display: none;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.card-header h2 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.card-header p {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.field.checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    align-self: end;
+    padding-bottom: 9px;
+}
+
+.field.checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+}
+
+.input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+}
+
+.input.code {
+    font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    resize: vertical;
+}
+
+.input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.btn {
+    padding: 7px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border-color: var(--accent);
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-text);
+}
+
+.theme-toggle span {
+    white-space: nowrap;
+}
+
+.readout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 6px 18px;
+    margin: 12px 0;
+    padding: 10px 14px;
+    background: var(--code-bg);
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.readout div {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.readout dt {
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    white-space: nowrap;
+}
+
+.readout dd {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+pre {
+    margin: 12px 0 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: auto;
+}
+
+pre code {
+    display: block;
+    padding: 1em;
+    background: transparent;
+    font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.demo-source {
+    display: grid;
+    gap: 12px;
+}
+
+.demo-source pre {
+    margin: 0;
+}
+
+.status,
+.hint {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status:empty {
+    display: none;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.chips .chip {
+    padding: 2px 9px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--code-bg);
+    font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Dark-mode code highlighting. The sample links highlight.js's
+   atom-one-light stylesheet (via Styles.AtomOneLight()); these rules swap in
+   the atom-one-dark palette when the page is dark. Higher specificity on
+   [data-theme="dark"] makes them win over the bundled stylesheet.
+   -------------------------------------------------------------------------- */
+
+:root[data-theme="dark"] .hljs {
+    color: #abb2bf;
+    background: #282c34;
+}
+
+:root[data-theme="dark"] .hljs-comment,
+:root[data-theme="dark"] .hljs-quote {
+    color: #5c6370;
+    font-style: italic;
+}
+
+:root[data-theme="dark"] .hljs-doctag,
+:root[data-theme="dark"] .hljs-keyword,
+:root[data-theme="dark"] .hljs-formula {
+    color: #c678dd;
+}
+
+:root[data-theme="dark"] .hljs-section,
+:root[data-theme="dark"] .hljs-name,
+:root[data-theme="dark"] .hljs-selector-tag,
+:root[data-theme="dark"] .hljs-deletion,
+:root[data-theme="dark"] .hljs-subst {
+    color: #e06c75;
+}
+
+:root[data-theme="dark"] .hljs-literal {
+    color: #56b6c2;
+}
+
+:root[data-theme="dark"] .hljs-string,
+:root[data-theme="dark"] .hljs-regexp,
+:root[data-theme="dark"] .hljs-addition,
+:root[data-theme="dark"] .hljs-attribute,
+:root[data-theme="dark"] .hljs-meta .hljs-string {
+    color: #98c379;
+}
+
+:root[data-theme="dark"] .hljs-attr,
+:root[data-theme="dark"] .hljs-variable,
+:root[data-theme="dark"] .hljs-template-variable,
+:root[data-theme="dark"] .hljs-type,
+:root[data-theme="dark"] .hljs-selector-class,
+:root[data-theme="dark"] .hljs-selector-attr,
+:root[data-theme="dark"] .hljs-selector-pseudo,
+:root[data-theme="dark"] .hljs-number {
+    color: #d19a66;
+}
+
+:root[data-theme="dark"] .hljs-symbol,
+:root[data-theme="dark"] .hljs-bullet,
+:root[data-theme="dark"] .hljs-link,
+:root[data-theme="dark"] .hljs-meta,
+:root[data-theme="dark"] .hljs-selector-id,
+:root[data-theme="dark"] .hljs-title {
+    color: #61aeee;
+}
+
+:root[data-theme="dark"] .hljs-built_in,
+:root[data-theme="dark"] .hljs-title.class_,
+:root[data-theme="dark"] .hljs-class .hljs-title {
+    color: #e6c07b;
+}
+
+:root[data-theme="dark"] .hljs-emphasis {
+    font-style: italic;
+}
+
+:root[data-theme="dark"] .hljs-strong {
+    font-weight: bold;
+}
+
+:root[data-theme="dark"] .hljs-link {
+    text-decoration: underline;
+}
