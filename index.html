@@ -1,43 +1,204 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <title>WebSharper.HighlightJS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="Scripts/WebSharper.Highlightjs.Sample.min.css" />
-    <style>
-        body {
-            max-width: 760px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            font-family: system-ui, sans-serif;
-        }
-        pre {
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow: auto;
-        }
-    </style>
+    <title>WebSharper.HighlightJS — sample</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23111111'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='9' fill='%23f5c542' text-anchor='middle'%3E%3C/%3E%3C/text%3E%3C/svg%3E" />
+    <script>
+        // Apply a previously chosen theme before first paint. Light is the
+        // default; the key is shared with Client.fs (themeStorageKey).
+        try {
+            var t = localStorage.getItem('websharper-highlightjs-theme');
+            if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { }
+    </script>
+    <!-- highlight.js is imported from the npm package; its stylesheet and the
+         WebSharper head are linked here. -->
+    <link rel="stylesheet" href="Scripts/WebSharper.Highlightjs.Sample.min.css" />
+    <link rel="stylesheet" href="site.css" />
+    
 </head>
 <body>
-    <h1>WebSharper.HighlightJS</h1>
+    <header class="app-header">
+        <div class="app-titles">
+            <h1>WebSharper.HighlightJS</h1>
+            <p>highlight.js <span>${version}</span> bindings for F# — with <a href="https://websharper.com">WebSharper</a></p>
+        </div>
+        <div class="app-actions">
+            <button class="btn theme-toggle" ws-onclick="ToggleTheme" title="Switch between the light and dark theme">
+                <span>${themeLabel}</span>
+            </button>
+            <a class="app-source" href="https://github.com/dotnet-websharper/highlightjs">Source</a>
+        </div>
+    </header>
 
-    <h2>Highlighted from a string</h2>
-    <pre class="hljs"><code id="highlighted"></code></pre>
+    <main class="page">
+        <p class="notice">${notice}</p>
 
-    <h2>Highlight all code blocks on the page</h2>
-    <pre><code class="language-cpp">int x = 6;
-for (int i = 0; i < 10; ++i) {
-    if (x < 120) {
-        x = x * 3;
-    }
-    else {
-        x = x - 10;
-    }
-    std::cout << x << std::endl;
+        <section class="card">
+            <header class="card-header">
+                <h2>Highlight a string</h2>
+                <p>
+                    <code>Hljs.Highlight(code, HighlightOptions(language))</code> returns a
+                    <code>Result</code> whose <code>Value</code> is the marked-up HTML, together
+                    with the matched <code>Language</code>, <code>Relevance</code> and the
+                    <code>Illegal</code> flag.
+                </p>
+            </header>
+            <div class="grid">
+                <label class="field">
+                    <span>Language</span>
+                    <select class="input" ws-var="Language">
+                        <option value="fsharp">fsharp</option>
+                        <option value="csharp">csharp</option>
+                        <option value="cpp">cpp</option>
+                        <option value="graphql">graphql</option>
+                        <option value="freedesktop">freedesktop</option>
+                        <option value="json">json</option>
+                        <option value="xml">xml</option>
+                        <option value="typescript">typescript</option>
+                    </select>
+                </label>
+                <label class="field checkbox">
+                    <span>ignoreIllegals</span>
+                    <input type="checkbox" ws-var="IgnoreIllegals" />
+                </label>
+            </div>
+            <label class="field">
+                <span>Source</span>
+                <textarea class="input code" rows="9" spellcheck="false" ws-var="Source"></textarea>
+            </label>
+            <div class="toolbar">
+                <button class="btn btn-primary" ws-onclick="HighlightString">Hljs.Highlight</button>
+            </div>
+            <dl class="readout">
+                <div><dt>Language</dt><dd>${resultLanguage}</dd></div>
+                <div><dt>Relevance</dt><dd>${resultRelevance}</dd></div>
+                <div><dt>Illegal</dt><dd>${resultIllegal}</dd></div>
+            </dl>
+            <pre class="hljs"><code ws-hole="Highlighted"></code></pre>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Auto-detection</h2>
+                <p>
+                    <code>Hljs.HighlightAuto(code, languageSubset)</code> guesses the language
+                    from a subset; <code>ResultAuto.Second_best</code> holds the runner-up.
+                </p>
+            </header>
+            <div class="grid">
+                <label class="field">
+                    <span>Language subset (comma-separated)</span>
+                    <input class="input" type="text" ws-var="AutoSubset" />
+                </label>
+            </div>
+            <div class="toolbar">
+                <button class="btn btn-primary" ws-onclick="HighlightAutoDemo">Hljs.HighlightAuto</button>
+            </div>
+            <dl class="readout">
+                <div><dt>Language</dt><dd>${autoLanguage}</dd></div>
+                <div><dt>Relevance</dt><dd>${autoRelevance}</dd></div>
+                <div><dt>Second_best</dt><dd>${autoSecondBest}</dd></div>
+            </dl>
+            <pre class="hljs"><code ws-hole="AutoHighlighted"></code></pre>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Highlight the page</h2>
+                <p>
+                    <code>Hljs.HighlightAll()</code> walks the configured selector and highlights
+                    every match; <code>Hljs.HighlightElement(node)</code> does a single element.
+                    Both use the language registered for the block.
+                </p>
+            </header>
+            <div id="page-demo" class="demo-source">
+                <pre><code class="language-cpp">int fib(int n) {
+    return n &lt; 2 ? n : fib(n - 1) + fib(n - 2);
 }
-    </code></pre>
+</code></pre>
+                <pre><code class="language-graphql">query Repository($owner: String!) {
+  repository(owner: $owner, name: "WebSharper") {
+    stargazerCount
+  }
+}
+</code></pre>
+            </div>
+            <div class="toolbar">
+                <button class="btn btn-primary" ws-onclick="HighlightAllDemo">Hljs.HighlightAll</button>
+                <button class="btn" ws-onclick="HighlightElementDemo">Hljs.HighlightElement</button>
+            </div>
+            <p class="status">${pageStatus}</p>
+            <div ws-hole="SingleTarget"></div>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Language registry</h2>
+                <p>
+                    <code>RegisterLanguage</code>, <code>UnregisterLanguage</code>,
+                    <code>GetLanguage</code>, <code>RegisterAliases</code> and
+                    <code>ListLanguages</code> drive highlight.js's language set at runtime.
+                </p>
+            </header>
+            <div class="grid">
+                <label class="field">
+                    <span>Language</span>
+                    <select class="input" ws-var="RegistryLanguage">
+                        <option value="fsharp">fsharp</option>
+                        <option value="csharp">csharp</option>
+                        <option value="cpp">cpp</option>
+                        <option value="graphql">graphql</option>
+                        <option value="freedesktop">freedesktop</option>
+                        <option value="json">json</option>
+                        <option value="xml">xml</option>
+                        <option value="typescript">typescript</option>
+                    </select>
+                </label>
+            </div>
+            <div class="toolbar">
+                <button class="btn btn-primary" ws-onclick="RegisterLanguageDemo">registerLanguage</button>
+                <button class="btn" ws-onclick="UnregisterLanguageDemo">unregisterLanguage</button>
+                <button class="btn" ws-onclick="GetLanguageDemo">getLanguage</button>
+                <button class="btn" ws-onclick="RegisterAliasesDemo">registerAliases</button>
+            </div>
+            <p class="status">${registryStatus}</p>
+            <p class="status">listLanguages(): ${languageCount} registered</p>
+            <ul class="chips" ws-hole="LanguageChips"></ul>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>configure()</h2>
+                <p>
+                    <code>Hljs.Configure(options)</code> sets the global options: the
+                    <code>cssSelector</code> that <code>highlightAll</code> walks and the
+                    <code>classPrefix</code> used for the generated classes.
+                </p>
+            </header>
+            <div class="grid">
+                <label class="field">
+                    <span>cssSelector</span>
+                    <input class="input" type="text" ws-var="CssSelector" />
+                </label>
+                <label class="field">
+                    <span>classPrefix</span>
+                    <input class="input" type="text" ws-var="ClassPrefix" />
+                </label>
+            </div>
+            <div class="toolbar">
+                <button class="btn btn-primary" ws-onclick="ConfigureDemo">Hljs.Configure</button>
+            </div>
+            <p class="status">${configureStatus}</p>
+            <p class="hint">
+                The sample links the <code>atom-one-light</code> stylesheet through
+                <code>Styles.AtomOneLight()</code>; the dark theme overrides the token colours.
+                Call any other <code>Styles.*</code> member to bundle a different theme.
+            </p>
+        </section>
+    </main>
 
     <script type="text/javascript" src="Scripts/WebSharper.Highlightjs.Sample.min.js"></script>
 </body>
