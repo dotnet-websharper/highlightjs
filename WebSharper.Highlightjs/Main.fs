@@ -2,7 +2,7 @@
 //
 // This file is part of WebSharper
 //
-// Copyright (c) 2008-2018 IntelliFactory
+// Copyright (c) 2008-2026 IntelliFactory
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you
 // may not use this file except in compliance with the License.  You may
@@ -51,11 +51,11 @@ module Definition =
         Pattern.Config "HighlightOptions" {
             Required =
                 [
-                    "language", T<string>
+                    ("language", T<string>)
                 ]
             Optional =
                 [
-                    "ignoreIllegals", T<bool>
+                    ("ignoreIllegals", T<bool>)
                 ]
         }
 
@@ -82,25 +82,34 @@ module Definition =
                 ]
             Optional = 
             [
-                "second_best", TSelf 
+                ("second_best", TSelf)
             ]
         }
 
     let Language =
         Class "Language"
-    
+
+    let RegisterAliasesOptions =
+        Pattern.Config "RegisterAliasesOptions" {
+            Required = []
+            Optional =
+                [
+                    ("languageName", T<string>)
+                ]
+        }
+
     Hljs
         |+> Static [
             "configure" => Options ^-> T<unit>
-            "highlight" => T<string>?code ^-> HighlightOptions ^-> Result
+            "highlight" => (T<string>?code * HighlightOptions?options) ^-> Result
             "highlightAll" => T<unit> ^-> T<unit>
-            "highlightAuto" => T<string>?code ^-> !?T<string> ^-> ResultAuto
+            "highlightAuto" => (T<string>?code * (!| T<string>)?languageSubset) ^-> ResultAuto
             "highlightElement" => T<JavaScript.Dom.Node> ^-> T<unit>
             "listLanguages" => T<unit> ^-> !|T<string>
             "registerLanguage" => (T<string> * Language) ^-> T<unit>
             "unregisterLanguage" => T<string> ^-> T<unit>
             "getLanguage" => T<string> ^-> T<obj>
-            "registerAliases" => T<string> + !|T<string> ^-> T<string> ^-> T<unit>
+            "registerAliases" => ((T<string> + !| T<string>)?aliases * RegisterAliasesOptions?options) ^-> T<unit>
             
             "safeMode" => T<unit> ^-> T<unit>
             "debugMode" => T<unit> ^-> T<unit>
@@ -184,6 +193,7 @@ module Definition =
             "fix"
             "flix"
             "fortran"
+            "freedesktop"
             "fsharp"
             "gams"
             "gauss"
@@ -194,6 +204,7 @@ module Definition =
             "go"
             "golo"
             "gradle"
+            "graphql"
             "groovy"
             "haml"
             "handlebars"
@@ -329,6 +340,7 @@ module Definition =
 
     let _ =
         [
+            "1c-light"
             "a11y-dark"
             "a11y-light"
             "agate"
@@ -343,10 +355,15 @@ module Definition =
             "brown-paper"
             "codepen-embed"
             "color-brewer"
+            "cybertopia-cherry"
+            "cybertopia-dimmer"
+            "cybertopia-icecap"
+            "cybertopia-saturated"
             "dark"
             "default"
             "devibeans"
             "docco"
+            "equinox"
             "far"
             "felipec"
             "foundation"
@@ -386,6 +403,9 @@ module Definition =
             "qtcreator-dark"
             "qtcreator-light"
             "rainbow"
+            "rose-pine"
+            "rose-pine-dawn"
+            "rose-pine-moon"
             "routeros"
             "school-book"
             "shades-of-purple"
@@ -398,6 +418,7 @@ module Definition =
             "tomorrow-night-blue"
             "tomorrow-night-bright"
             "vs"
+            "vs-dark"
             "vs2015"
             "xcode"
             "xt256"
@@ -598,6 +619,7 @@ module Definition =
                 Hljs
                 Styles
                 Language
+                RegisterAliasesOptions
             ]
         ]
 

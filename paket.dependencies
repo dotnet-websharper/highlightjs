@@ -2,31 +2,13 @@ source https://api.nuget.org/v3/index.json
 source https://nuget.pkg.github.com/dotnet-websharper/index.json
 source ../localnuget
 
-framework: netstandard2.0
-
-storage: none
+framework: netstandard2.0, net10.0
 strategy: min
+storage: none
 
 nuget WebSharper ~> 10.0
 nuget WebSharper.FSharp ~> 10.0
-
+nuget WebSharper.UI ~> 10.0
 
 group wsbuild
     git https://github.com/dotnet-websharper/build-script websharper80
-
-group testing
-    source https://api.nuget.org/v3/index.json
-    source https://nuget.pkg.github.com/dotnet-websharper/index.json
-    source ../localnuget
-
-    framework: netstandard2.0
-
-    storage: none
-    strategy: min
-
-    nuget FSharp.Core
-    nuget WebSharper ~> 10.0
-    nuget WebSharper.JQuery ~> 10.0
-    nuget WebSharper.FSharp ~> 10.0
-    nuget WebSharper.UI ~> 10.0
-    nuget WebSharper.AspNetCore ~> 10.0
