@@ -180,7 +180,7 @@ drive the same build through the build-script toolchain.
 
 ## Deployment
 
-Pushing to `master` triggers `.github/workflows/ghpages.yml`, which builds the sample in
+Pushing to `main` triggers `.github/workflows/ghpages.yml`, which builds the sample in
 Release (Paket restore, esbuild bundle) and publishes `dist/` to the `gh-pages` branch.
 
 ## Repository layout
