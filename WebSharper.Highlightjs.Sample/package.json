@@ -1,8 +1,11 @@
 {
+  "name": "websharper.highlightjs.sample",
+  "version": "1.0.0",
+  "private": true,
   "devDependencies": {
-    "esbuild": "^0.19.9"
+    "esbuild": "^0.28.2"
   },
   "dependencies": {
-    "highlight.js": "^11.11.1"
+    "highlight.js": "^11.12.0"
   }
 }

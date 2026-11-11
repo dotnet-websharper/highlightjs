@@ -51,11 +51,11 @@ module Definition =
         Pattern.Config "HighlightOptions" {
             Required =
                 [
-                    "language", T<string>
+                    ("language", T<string>)
                 ]
             Optional =
                 [
-                    "ignoreIllegals", T<bool>
+                    ("ignoreIllegals", T<bool>)
                 ]
         }
 
@@ -82,7 +82,7 @@ module Definition =
                 ]
             Optional = 
             [
-                "second_best", TSelf 
+                ("second_best", TSelf)
             ]
         }
 
@@ -94,7 +94,7 @@ module Definition =
             Required = []
             Optional =
                 [
-                    "languageName", T<string>
+                    ("languageName", T<string>)
                 ]
         }
 
@@ -193,6 +193,7 @@ module Definition =
             "fix"
             "flix"
             "fortran"
+            "freedesktop"
             "fsharp"
             "gams"
             "gauss"
@@ -203,6 +204,7 @@ module Definition =
             "go"
             "golo"
             "gradle"
+            "graphql"
             "groovy"
             "haml"
             "handlebars"
@@ -338,6 +340,7 @@ module Definition =
 
     let _ =
         [
+            "1c-light"
             "a11y-dark"
             "a11y-light"
             "agate"
@@ -352,10 +355,15 @@ module Definition =
             "brown-paper"
             "codepen-embed"
             "color-brewer"
+            "cybertopia-cherry"
+            "cybertopia-dimmer"
+            "cybertopia-icecap"
+            "cybertopia-saturated"
             "dark"
             "default"
             "devibeans"
             "docco"
+            "equinox"
             "far"
             "felipec"
             "foundation"
@@ -395,6 +403,9 @@ module Definition =
             "qtcreator-dark"
             "qtcreator-light"
             "rainbow"
+            "rose-pine"
+            "rose-pine-dawn"
+            "rose-pine-moon"
             "routeros"
             "school-book"
             "shades-of-purple"
@@ -407,6 +418,7 @@ module Definition =
             "tomorrow-night-blue"
             "tomorrow-night-bright"
             "vs"
+            "vs-dark"
             "vs2015"
             "xcode"
             "xt256"

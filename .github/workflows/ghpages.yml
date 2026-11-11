@@ -6,47 +6,57 @@ on:
       - master
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup .NET 11 (preview)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '11.0.x'
+          dotnet-quality: 'preview'
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-
-      - name: Setup .NET 9
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '9.0.x'
-
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./WebSharper.Highlightjs.Sample
 
       - name: Install Paket as a .NET Tool
         run: dotnet tool restore
 
       - name: Add credentials for Paket
-        run:
-          dotnet tool run paket config
-            add-credentials https://nuget.pkg.github.com/dotnet-websharper/index.json
-            --username intellifactory-gh 
+        run: |
+          dotnet paket config add-credentials https://nuget.pkg.github.com/dotnet-websharper/index.json \
+            --username intellifactory-gh \
             --password ${{ secrets.PAT_PACKAGE }}
 
-      - name: Restore Dependencies Using Paket
-        run: dotnet tool run paket restore
+      - name: Add GitHub registry NuGet source
+        run: |
+          dotnet nuget add source https://nuget.pkg.github.com/dotnet-websharper/index.json \
+            --name github \
+            --username intellifactory-gh \
+            --password ${{ secrets.PAT_PACKAGE }} \
+            --store-password-in-clear-text
 
-      - name: Build WebSharper.Highlightjs
-        run: dotnet build WebSharper.Highlightjs/WebSharper.Highlightjs.fsproj
+      - name: Prime Paket Git cache for build-script
+        run: |
+          cache="$HOME/.paket/git/db/build-script"
+          rm -rf "$cache"
+          mkdir -p "$(dirname "$cache")"
+          git clone --mirror https://github.com/dotnet-websharper/build-script "$cache"
 
-      - name: Build Sample Project in Release mode
-        run: dotnet build --configuration Release
-        working-directory: ./WebSharper.Highlightjs.Sample
+      - name: Restore dependencies using Paket
+        run: dotnet paket restore
+
+      - name: Build sample in Release
+        run: dotnet build WebSharper.Highlightjs.Sample/WebSharper.Highlightjs.Sample.fsproj --configuration Release
 
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
